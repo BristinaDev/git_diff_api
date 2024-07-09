@@ -61,19 +61,6 @@ This document outlines the endpoints and functionality required for integrating 
     GET https://example.com/api/repositories/octocat/hello-world/commits/new-feature/diff/master
     ```
   
-  - **Example Response (JSON):**
-    ```json
-    {
-      "url": "https://api.github.com/repos/octocat/Hello-World/compare/master...new-feature",
-      "status": "identical",
-      "ahead_by": 0,
-      "behind_by": 0,
-      "total_commits": 0,
-      "commits": [],
-      "files": []
-    }
-    ```
-  
   - **Status Codes:**
     - 200 OK: Successful comparison.
     - 404 Not Found: If comparison or repository is not found.
