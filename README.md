@@ -81,7 +81,7 @@ This document outlines the endpoints and functionality required for integrating 
   
   - **Example Request:**
     ```
-    GET https://example.com/api/repositories/octocat/hello-world/commits?page=1
+    GET https://example.com/api/repositories/:user/:repo/commits/:id
     ```
   
   - **Example Response (JSON):**
@@ -127,61 +127,9 @@ This document outlines the endpoints and functionality required for integrating 
 
 ---
 
-**Authentication Endpoint**
-
-- **Endpoint:** `/authenticate`
-- **Method:** POST
-- **Description:** Authenticates the user with GitHub using OAuth.
-
-  - **Parameters:**
-    - `code` (string): Authorization code obtained from GitHub OAuth flow.
-  
-  - **Example Request:**
-    ```
-    POST https://example.com/api/authenticate
-    Body:
-    {
-      "code": "abcdef123456"
-    }
-    ```
-  
-  - **Example Response (JSON):**
-    ```json
-    {
-      "access_token": "gho_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-      "token_type": "bearer",
-      "scope": "repo,user"
-    }
-    ```
-  
-  - **Status Codes:**
-    - 200 OK: Successful authentication.
-    - 400 Bad Request: Invalid or missing authorization code.
-
----
-
-**Error Handling**
-
-- **404 Not Found:**
-  - Returned when the requested resource (repository or comparison) does not exist.
-
-- **422 Unprocessable Entity:**
-  - Returned for invalid parameters or repository.
-
----
-
-**Rate Limiting**
-
-GitHub's API has rate limits based on authentication (unauthenticated requests are limited to 60 per hour, authenticated requests vary by scope).
-
----
-
 **Notes**
 
 - Ensure proper error handling for all endpoints to gracefully manage GitHub API responses and application-specific errors.
 - Use appropriate caching mechanisms to improve performance and reduce API rate limits usage.
 - Consider pagination for endpoints that return large datasets (e.g., commits).
 
----
-
-This structured format will help organize the documentation clearly in Google Docs, making it easier to read and reference for developers and stakeholders. Adjust the content and formatting according to your specific application needs and GitHub API usage.
